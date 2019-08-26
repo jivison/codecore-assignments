@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html(lang="en", style="padding: 0.5em")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        title New Cohort
+    body
+        include ./includes/header.jade
+        form(action="/cohorts/new", method="POST")
+            div.form-group
+                label(for="name") Name
+                input.form-control(type="text", name="name", placeholder="Cohort 33", autocomplete="off")
+            
+            div.form-group
+                label(for="imageUrl") Image URL
+                input.form-control(type="text", name="logo_url", placeholder="https://example.com/path/to/image.png", autocomplete="off")
+            
+            div.form-group
+                label(for="members") Members
+                input.form-control(type="text", name="members", placeholder="John, Kevin, Isaac...", autocomplete="off")
+            
+            input.btn.btn-primary(type="submit", value="Submit")

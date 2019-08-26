@@ -1,0 +1,64 @@
+mixin teamDisplay(t)
+    ul.list-group
+        li.list-group-item.font-weight-bold # &nbsp;&nbsp;&nbsp;&nbsp;Members
+        each team, index in t
+            li.list-group-item
+                div(style="display: flex")
+                    p.font-weight-bold= index
+                    p &nbsp;&nbsp;&nbsp;&nbsp; #{team.join(", ")}
+
+mixin radioButton(id, name, value, isChecked)
+    if isChecked
+        input.radio(type="radio", id=id, name=name, value=value, style="margin-left: 0.53em", checked)
+    else
+        input.radio(type="radio", id=id, name=name, value=value, style="margin-left: 0.53em")
+
+- params = (params) ? params : {}
+
+<!DOCTYPE html>
+html(lang="en", style="padding: 0.5em")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        title Cohort #{cohort.id}
+    body
+        include ./includes/header.jade
+
+        .card(style="padding: 1em")
+
+            h3.card-title= cohort.name
+            p= cohort.members
+
+            .forms(style="display: flex")
+
+                form(action=`/cohort/${cohort.id}`, method="POST")
+                    input(type="hidden", value="DELETE", name="_method")
+                    input.btn.btn-danger(type="submit", value="Delete")
+
+                
+                button.btn.btn-info(style="margin-left: 1em", onclick=`window.location.href = '/cohort/${cohort.id}/edit'`) &nbsp;&nbsp;Edit&nbsp;&nbsp; 
+
+
+            <br />
+
+            form(action=`/cohort/${cohort.id}`, method="POST")
+                .form-group
+                    label(for="perNumTeams") By number of teams
+                        +radioButton("perNumTeams", "method", "perNumTeams", (params.method === "perNumTeams"))
+                    <br />
+                    label(for="perNumMembers") By number of members in a team
+                        +radioButton("perNumMembers", "method", "perNumMembers", (params.method === "perNumMembers"))
+
+                .form-group
+                    - let quantityValue = (params.quantity) ? params.quantity : "";
+                    label(for="quantity") Quantity
+                    input.form-control(type="text", name="quantity", value=quantityValue)
+
+                input.btn.btn-primary(type="submit", value="Assign Teams")
+
+            <br/>
+
+            if teams
+                +teamDisplay(teams)

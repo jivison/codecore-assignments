@@ -1,0 +1,9 @@
+--Pages--
+/cohorts
+    |- GET  /       List all cohorts     | List all cohorts in card form, with title, names, and a 'show cohort' button 
+    |- GET  /new    Create a new cohort  | Save cohort's members, name, logoUrl to a cohorts table; redirect to that cohorts show page
+    |- POST /new             ^                      ^
+    |- GET  /:id    Show a single cohort | Should have a form for creating teams with quantity, and the method to use; also a delete button
+    |- POST /:id    Generate teams       | List number of teams, and their members
+        ?method     Which method to use (perTeam, perNumMembers)
+    |- GET /:id/edit    Edit a cohort

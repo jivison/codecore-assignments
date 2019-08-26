@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="en", style="padding: 0.5em")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        title Edit #{cohort.id}
+    body
+        include ./includes/header.jade
+
+        form(action=`/cohort/${cohort.id}`, method="POST")
+            .form-group
+                label(for="name") Name
+                input.form-control(type="text", name="name", placeholder="Cohort 33", autocomplete="off", value=cohort.name)
+            
+            .form-group
+                label(for="imageUrl") Image URL
+                input.form-control(type="text", name="logo_url", placeholder="https://example.com/path/to/image.png", autocomplete="off", value=cohort.logo_url)
+            
+            .form-group
+                label(for="members") Members
+                input.form-control(type="text", name="members", placeholder="John, Kevin, Isaac...", autocomplete="off", value=cohort.members)
+
+            input(type="hidden", value="PATCH", name="_method")
+
+            input.btn.btn-primary(type="submit", value="Update")
