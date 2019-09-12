@@ -7,15 +7,15 @@
 </div>
 
 <%= form_for(@post) do |f| %>
-    <div>
+    <div class="form-group">
         <%= f.label :title %>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, class: "form-control" %>
     </div>
-    <div>
+    <div class="form-group">
         <%= f.label :body %>
-        <%= f.text_area :body %>
+        <%= f.text_area :body, class: "form-control" %>
     </div>
 
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-outline-primary" %>
 
 <% end %>

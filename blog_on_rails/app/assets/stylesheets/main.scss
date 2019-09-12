@@ -1,0 +1,79 @@
+html {
+    // Everything was really small before this
+    // Doesn't work on Firefox
+    zoom: 200%;
+}
+
+.cards-container {
+    
+    
+    display: grid;
+    grid-auto-rows: minmax(150px, auto);
+
+    grid-template-columns: repeat(1, 1fr);
+        
+    // I tried for 45 minutes to get a third media breakpoint
+    // For some reason it would trigger the min-width: 768 
+    // When the screen width was 10px
+    @media only screen and (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    
+    .card {
+        padding: 1.5em;
+        margin: 1em;
+        border-radius: 2em;
+    }
+
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 1em;
+    background: whitesmoke;
+    font-size: 1.5em;
+
+    .logo {
+        font-size: 1.3em;
+    }
+
+    .menu-items * {
+        margin-left: 1em;
+    }
+
+}
+
+.show-container {
+    padding: 1em;
+
+    .post {
+
+        margin-bottom: 2em;
+
+        .post-header {
+            font-size: 3em;
+        }
+    
+        .post-body {
+            font-size: 1.5em;
+        }
+     }
+
+     .comments {
+        margin-top: 2em;
+        
+        .comment {
+            margin-bottom: 2em;
+        }
+    }
+
+
+}
+
+.new-container {
+    padding: 1em;
+}

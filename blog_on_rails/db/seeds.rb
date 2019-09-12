@@ -12,10 +12,19 @@ Post.destroy_all
 NUM_POSTS = 50
 
 NUM_POSTS.times do
-    Post.create({
+    current_post = Post.create({
         title: Faker::Lorem.sentence,
         body: Faker::Lorem.paragraph(sentence_count: 5)
     })
+
+    rand(1..7).times do
+        Comment.create({
+            body: Faker::Hacker.say_something_smart,
+            post_id: current_post.id
+        })
+    end
+
 end
 
 puts "Generated #{Post.all.count} posts."
+puts "Generated #{Comment.all.count} comments."
