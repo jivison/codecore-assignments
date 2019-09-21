@@ -1,0 +1,33 @@
+<article class="new-user-container">
+    <h1>Sign Up</h1>
+
+    <div>
+        <% if @user.errors.any? %>
+            <% @user.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
+            <% end %>
+        <% end %>
+    </div>
+
+    <%= form_for(@user) do |f| %>
+        <div>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div>
+            <%= f.label :email %>
+            <%= f.text_field :email, class: "form-control" %>
+        </div>
+        <div>
+            <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control" %>
+        </div>
+        <div>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+
+        <%= f.submit class: "btn btn-outline-primary", value: "Sign Up!" %>
+
+    <% end %>
+</article>

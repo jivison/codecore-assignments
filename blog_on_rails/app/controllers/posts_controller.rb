@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy, :new, :edit, :update]
+  before_action :authorize!, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all.sort_by { |post| post.created_at }.reverse
@@ -17,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new post_params
+    @post.user = @current_user
     if @post.save
       redirect_to :posts
     else
@@ -47,6 +50,10 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def authorize!
+    redirect_to root_path, alert: "Not authorized" unless can?(:crud, @post)
   end
 
 end

@@ -1,7 +1,7 @@
 html {
     // Everything was really small before this
     // Doesn't work on Firefox
-    zoom: 200%;
+    zoom: 100%;
 }
 
 .cards-container {
@@ -45,6 +45,10 @@ nav {
         margin-left: 1em;
     }
 
+    .login {
+        color: rgb(104, 140, 240);
+    }
+
 }
 
 .show-container {
@@ -74,6 +78,10 @@ nav {
 
 }
 
-.new-container {
+.new-container, .new-user-container, .new-session-container {
     padding: 1em;
+
+    input[type=submit] {
+        margin-top: 1em;
+    }
 }

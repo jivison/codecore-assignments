@@ -16,6 +16,15 @@
       <div class="menu-items">
         <%= link_to 'Home', posts_path %>
         <%= link_to 'New Post', new_post_path %>
+        <% if @current_user.present? %>
+          <small class="login">
+            <span style="font-weight: 700"><%= link_to @current_user.name, edit_user_path(@current_user) %></span>
+            <%= link_to 'Sign Out', :sessions, method: :delete, class: "login" %>
+          </small>
+        <% else %>
+          <%= link_to 'Login', new_session_path, class: "login" %>
+          <%= link_to 'Sign Up', new_user_path, class: "login" %>
+        <% end %>
       </div>
     </nav>
 
