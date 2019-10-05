@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog On Rails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+
+    <nav>
+      <%= link_to 'Blog On Rails', posts_path, class: "logo" %>
+      <div class="menu-items">
+        <%= link_to 'Home', posts_path %>
+        <%= link_to 'New Post', new_post_path %>
+      </div>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>
